@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:sport.properties"/>
 
     <bean id="myLoggerConfig" class="springdemo.MyLoggerConfig" init-method="initLogger">
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
 
+    <bean id="myFortune"
+          class="springdemo.HappyFortuneService"/>
+
+    <bean id="randFortune"
+          class="springdemo.RandomFortuneService">
+        <constructor-arg value="${foo.fortunes}"/>
+    </bean>
+
     <bean id="myCoach"
-          class="springdemo.TrackCoach">
+          class="springdemo.BaseballCoach">
+        <constructor-arg ref="randFortune"/>
     </bean>
 
     <bean id="newCoach"
           class="springdemo.FootballCoach">
+        <property name="fortuneService" ref="myFortune"/>
+
+        <!--<property name="email" value="titarenko42k@gmail.com"/>
+        <property name="team" value="Azov"/>-->
+
+        <property name="email" value="${foo.email}"/>
+        <property name="team" value="${foo.team}"/>
     </bean>
 </beans>

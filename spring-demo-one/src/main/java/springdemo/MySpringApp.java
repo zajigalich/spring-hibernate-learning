@@ -10,12 +10,20 @@ public class MySpringApp {
 
         Coach theCoach = xmlApplicationContext.getBean("myCoach", Coach.class);
 
-        Coach newCoach = xmlApplicationContext.getBean("newCoach", Coach.class);
+        //Coach newCoach =
+        FootballCoach newCoach =
+                xmlApplicationContext.getBean("newCoach", FootballCoach.class);
 
         System.out.println(theCoach.getDailyWorkout());
+        System.out.println(theCoach.getDailyFortune());
+
         System.out.println(newCoach.getDailyWorkout());
+        System.out.println(newCoach.getDailyFortune());
+        System.out.println(newCoach.getEmail());
+        System.out.println(newCoach.getTeam());
 
         xmlApplicationContext.close();
+
 
 
     }

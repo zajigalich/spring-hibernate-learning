@@ -1,15 +1,16 @@
 package springdemo;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class MyApp {
     public static void main(String[] args) {
 
-        Coach baseballCoach = new BaseballCoach();
+        FortuneService fortuneService = new HappyFortuneService();
 
-        Coach trackCoach = new TrackCoach();
+        Coach trackCoach = new TrackCoach(fortuneService);
+
+        Coach baseballCoach = new BaseballCoach();
 
         System.out.println(baseballCoach.getDailyWorkout());
         System.out.println(trackCoach.getDailyWorkout());
+        System.out.println(trackCoach.getDailyFortune());
     }
 }
