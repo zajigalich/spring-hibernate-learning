@@ -22,9 +22,9 @@ public class MySpringApp {
         System.out.println(newCoach.getEmail());
         System.out.println(newCoach.getTeam());
 
+
+
         xmlApplicationContext.close();
-
-
 
     }
 }

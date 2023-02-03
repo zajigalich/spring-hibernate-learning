@@ -7,11 +7,19 @@ public class FootballCoach implements Coach {
     private String team;
 
     public FootballCoach() {
-        System.out.println("TheCoach(Football)");
+        System.out.println("FootballCoach: no-args constructor");
+    }
+
+    private void doStartup(){
+        System.out.println("FootballCoach: init-method");
+    }
+
+    private void doFinishing(){
+        System.out.println("FootballCoach: destroy-method");
     }
 
     public void setFortuneService(FortuneService fortuneService) {
-        System.out.println("TheCoach FortuneService setter");
+        System.out.println("FootballCoach: fortuneService setter");
         this.fortuneService = fortuneService;
     }
 
@@ -31,6 +39,10 @@ public class FootballCoach implements Coach {
 
     public String getTeam() {
         return team;
+    }
+
+    public FortuneService getFortuneService() {
+        return fortuneService;
     }
 
     @Override
