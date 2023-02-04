@@ -10,5 +10,6 @@
     </bean>
     
     <context:component-scan base-package="springdemo"/>
-    
+    <context:property-placeholder location="classpath:sport.properties"/>
+
 </beans>
