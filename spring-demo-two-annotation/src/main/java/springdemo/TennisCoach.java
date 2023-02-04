@@ -3,9 +3,14 @@ package springdemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
+@Scope("singleton")
 public class TennisCoach implements Coach {
 
     /*@Autowired
@@ -23,6 +28,16 @@ public class TennisCoach implements Coach {
     public TennisCoach(@Qualifier("randomFortuneService") FortuneService fortuneService) {
         System.out.println("TennisCoach: fortuneService constructor");
         this.fortuneService = fortuneService;
+    }
+
+    @PostConstruct
+    public void doSetupStuff(){
+        System.out.println("TennisCoach: init method called");
+    }
+
+    @PreDestroy
+    public void doCleanUpStuff(){
+        System.out.println("TennisCoach: destroy method called");
     }
 
     /*@Autowired

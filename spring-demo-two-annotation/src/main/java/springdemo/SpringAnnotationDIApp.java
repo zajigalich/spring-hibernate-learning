@@ -2,7 +2,7 @@ package springdemo;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MySpringAnnotationApp {
+public class SpringAnnotationDIApp {
     public static void main(String[] args) {
 
         ClassPathXmlApplicationContext applicationContext =

@@ -1,44 +1,47 @@
 package springdemo;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Component
+@Scope("singleton")
 public class RandomFortuneService implements FortuneService {
 
 /*    @Value("${foo.fortunes}")
     private String fortunes;*/
 
+    private List<String> fortunes;
     private Random random = new Random();
 
     @Override
     public String getFortune() {
-        List<String> fortunes = readFortunesFromFile();
-
         int index = random.nextInt(fortunes.size());
         return fortunes.get(index);
     }
 
-    private List<String> readFortunesFromFile() {
+    @PostConstruct
+    private void readFortunesFromFile() {
 
-        List<String> lines = new ArrayList<>();
+        System.out.println("RandomFortuneService: init method called");
+
+        fortunes = new ArrayList<>();
 
         try (BufferedReader bufferedReader =
                      new BufferedReader(new FileReader("spring-demo-two-annotation/src/main/resources/fortunes.txt"))){
 
             String tmp;
             while ((tmp = bufferedReader.readLine()) != null){
-                lines.add(tmp);
+                fortunes.add(tmp);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return lines;
     }
 }
