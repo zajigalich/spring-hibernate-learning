@@ -1,16 +1,20 @@
 package springdemo;
 
-public class DotaCoach implements Coach {
+import org.springframework.beans.factory.annotation.Value;
+
+public class SwimCoach implements Coach {
 
     private FortuneService fortuneService;
+    @Value("${foo.team}")
+    private String team;
 
-    public DotaCoach(FortuneService fortuneService) {
+    public SwimCoach(FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Play 20 games in pomoyka";
+        return "Swim 4 pools butterfly";
     }
 
     @Override
@@ -20,6 +24,6 @@ public class DotaCoach implements Coach {
 
     @Override
     public String getTeam() {
-        return null;
+        return team;
     }
 }

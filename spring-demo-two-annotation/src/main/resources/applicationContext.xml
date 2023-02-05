@@ -8,7 +8,7 @@
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
-    
+
     <context:component-scan base-package="springdemo"/>
     <context:property-placeholder location="classpath:sport.properties"/>
 
