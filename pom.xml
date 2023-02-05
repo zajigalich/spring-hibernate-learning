@@ -11,6 +11,7 @@
     <modules>
         <module>spring-demo-one</module>
         <module>spring-demo-two-annotation</module>
+        <module>spring-mvc-three-demo</module>
     </modules>
 
     <properties>
