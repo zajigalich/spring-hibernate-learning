@@ -9,6 +9,13 @@
     <context:property-placeholder location="classpath:logger.properties"/>
     <mvc:annotation-driven/>
 
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <bean id="myLoggerConfig" class="com.my.MyLoggerConfig" init-method="initLogger">
+        <property name="rootLoggerLevel" value="FINE" />
+        <property name="printedLoggerLevel" value="FINE"/>
+    </bean>
+
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
