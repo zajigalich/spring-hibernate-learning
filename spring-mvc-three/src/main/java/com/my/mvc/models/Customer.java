@@ -8,7 +8,7 @@ public class Customer {
     private String firstName;
 
     @NotNull(message = "is required")
-    @Size(min = 2, message = "is required")
+    @Size(min = 1, message = "is required")
     private String lastName;
 
     public String getFirstName() {
