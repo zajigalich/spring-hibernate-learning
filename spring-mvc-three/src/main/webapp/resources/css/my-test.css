@@ -1,5 +1,7 @@
 body{
     background-color: lightblue;
+    font-size: 15px;
+    color: brown;
 }
 h2, a{
     color: chocolate;

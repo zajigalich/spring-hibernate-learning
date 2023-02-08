@@ -18,6 +18,10 @@
 
 <a href="${pageContext.request.contextPath}/hello/showForm">Hello Form</a>
 
+<br><br>
+
+<a href="${pageContext.request.contextPath}/student/showForm">Student Form</a>
+
 
 <br><br>
 
