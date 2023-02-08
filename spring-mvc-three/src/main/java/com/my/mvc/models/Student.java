@@ -1,4 +1,4 @@
-package com.my.mvc.model;
+package com.my.mvc.models;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

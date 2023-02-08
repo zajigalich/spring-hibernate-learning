@@ -1,6 +1,6 @@
-package com.my.mvc;
+package com.my.mvc.controllers;
 
-import com.my.mvc.model.Student;
+import com.my.mvc.models.Student;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -5,7 +5,7 @@
     <title>Main Menu</title>
 
     <link rel="stylesheet" type="text/css"
-        href="${pageContext.request.contextPath}/resources/css/my-test.css">
+          href="${pageContext.request.contextPath}/resources/css/my-test.css">
 
     <script src="${pageContext.request.contextPath}/resources/js/simple-test.js"></script>
 
@@ -22,6 +22,10 @@
 
 <a href="${pageContext.request.contextPath}/student/showForm">Student Form</a>
 
+
+<br><br>
+
+<a href="${pageContext.request.contextPath}/customer/showForm">Customer Form</a>
 
 <br><br>
 
