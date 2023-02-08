@@ -29,6 +29,7 @@ public class CustomerController {
             @Valid @ModelAttribute("customer") Customer customer,
             BindingResult bindingResult
     ){
+        System.out.println("bindingResult = " + bindingResult);
         return !bindingResult.hasErrors() ? "customer-confirmation" : "customer-form";
     }
 

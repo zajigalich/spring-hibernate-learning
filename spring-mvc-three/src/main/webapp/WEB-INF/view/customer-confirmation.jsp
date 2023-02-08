@@ -6,6 +6,11 @@
 <body>
 <h2>
     Customer is confirmed: ${customer.firstName} ${customer.lastName}
+    <br>
+    Free Passes: ${customer.freePasses}
+    <br>
+    Postal Code: ${customer.postalCode}
+    <br>
 </h2>
 </body>
 </html>
