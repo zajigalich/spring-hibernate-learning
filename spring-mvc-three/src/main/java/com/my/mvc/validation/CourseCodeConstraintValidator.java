@@ -15,7 +15,7 @@ public class CourseCodeConstraintValidator
 
     @Override
     public boolean isValid(String string, ConstraintValidatorContext constraintValidatorContext) {
-
+        
         boolean result = false;
 
         if (string != null) {

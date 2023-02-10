@@ -12,6 +12,7 @@
         <module>spring-demo-one</module>
         <module>spring-demo-two-annotation</module>
         <module>spring-mvc-three</module>
+        <module>hibernate-tutorial-four</module>
     </modules>
 
     <properties>
