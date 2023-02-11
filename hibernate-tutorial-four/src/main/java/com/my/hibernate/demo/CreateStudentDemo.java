@@ -1,4 +1,4 @@
-package com.my.demo;
+package com.my.hibernate.demo;
 
 import com.my.entity.Student;
 import org.hibernate.Session;
@@ -19,7 +19,7 @@ public class CreateStudentDemo {
 
         Student student1 = new Student("Bonita", "Stick", "bonita@gmail.com");
         Student student2 = new Student("Garry", "Potter", "garry@gmail.com");
-        Student student3 = new Student("Tom", "Dick", "tom42k@gmail.com");
+        Student student3 = new Student("Tom", "Dic", "tom42k@gmail.com");
 
         Session session = sessionFactory.getCurrentSession();
 
