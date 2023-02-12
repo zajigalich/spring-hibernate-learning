@@ -19,9 +19,9 @@ public class InstructorDetail {
 
     @OneToOne(mappedBy = "instructorDetail",
             cascade = {
+                    CascadeType.DETACH,
                     CascadeType.PERSIST,
                     CascadeType.MERGE,
-                    CascadeType.DETACH,
                     CascadeType.REFRESH
             })
     private Instructor instructor;
