@@ -13,6 +13,7 @@
         <module>spring-demo-two-annotation</module>
         <module>spring-mvc-three</module>
         <module>hibernate-tutorial-four</module>
+        <module>hb-one-to-one-five</module>
     </modules>
 
     <properties>
