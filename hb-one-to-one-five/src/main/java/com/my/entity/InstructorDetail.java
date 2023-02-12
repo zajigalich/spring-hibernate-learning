@@ -19,7 +19,6 @@ public class InstructorDetail {
 
     @OneToOne(mappedBy = "instructorDetail",
             cascade = {
-                    //CascadeType.REMOVE,
                     CascadeType.PERSIST,
                     CascadeType.MERGE,
                     CascadeType.DETACH,

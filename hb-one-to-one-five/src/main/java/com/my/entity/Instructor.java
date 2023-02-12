@@ -17,13 +17,7 @@ public class Instructor {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(cascade = {
-            //CascadeType.REMOVE,
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 

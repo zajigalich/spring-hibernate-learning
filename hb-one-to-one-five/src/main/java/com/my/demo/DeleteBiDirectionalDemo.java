@@ -16,32 +16,24 @@ public class DeleteBiDirectionalDemo {
 
         Session session = sessionFactory.getCurrentSession();
 
-        try(sessionFactory; session) {
+        try (sessionFactory; session) {
 
             session.beginTransaction();
 
-            long id = 7;
-            Instructor instructor = session.get(Instructor.class, id);
-
-            System.out.println("instructor = " + instructor);
-
-            if (instructor != null){
-                System.out.println("Deleting");
-                session.delete(instructor);
-            }
-
-            /*id = 4;
+            long id = 6;
 
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 
             System.out.println("instructorDetail = " + instructorDetail);
 
-            if (instructorDetail != null){
-                System.out.println("Deleting");
-                session.delete(instructorDetail);
-            }*/
+            //remove the associated object ref
+            instructorDetail.getInstructor().setInstructorDetail(null); //!!!!!!!!
+
+            System.out.println("Deleting");
+            session.delete(instructorDetail);
+
             session.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
