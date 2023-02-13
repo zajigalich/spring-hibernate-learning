@@ -1,4 +1,4 @@
-package com.my.demo;
+package com.my.crud;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;

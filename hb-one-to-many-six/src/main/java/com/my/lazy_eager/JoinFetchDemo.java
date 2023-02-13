@@ -1,4 +1,4 @@
-package com.my.demo;
+package com.my.lazy_eager;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;
@@ -6,8 +6,9 @@ import com.my.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
-public class GetInstructorCoursesDemo {
+public class JoinFetchDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration().configure()
@@ -19,17 +20,24 @@ public class GetInstructorCoursesDemo {
         Session session = sessionFactory.getCurrentSession();
 
 
-        try(sessionFactory; session) {
+        try (sessionFactory; session) {
 
             session.beginTransaction();
 
-            Instructor instructor = session.get(Instructor.class, 1L);
+            Long id = 1L;
 
-            System.out.println("instructor = " + instructor);
+            Query<Instructor> query = session.createQuery("select i from Instructor i join fetch i.courses where i.id = :instructorId",
+                    Instructor.class);
 
-            System.out.println("Courses: " + instructor.getCourses());
+            query.setParameter("instructorId", id);
+
+            Instructor instructor = query.getSingleResult();
 
             session.getTransaction().commit();
+
+            System.out.println(instructor);
+            System.out.println(instructor.getCourses());
+
         }
     }
 }

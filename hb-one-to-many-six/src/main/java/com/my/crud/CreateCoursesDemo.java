@@ -1,4 +1,4 @@
-package com.my.demo;
+package com.my.crud;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;
@@ -32,13 +32,13 @@ public class CreateCoursesDemo {
 
             Instructor instructor = session.get(Instructor.class, 1L);
 
-            instructor.add(course1);
+            //instructor.add(course1);
             instructor.add(course2);
 
             /*course1.setInstructor(instructor);
             course2.setInstructor(instructor);*/ //in this scenario optional
 
-            session.save(course1);
+            //session.save(course1);
             session.save(course2);
 
             System.out.println("instructor = " + instructor);
