@@ -1,19 +1,21 @@
-package com.my.crud;
+package com.my.crud_bi;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;
 import com.my.entity.InstructorDetail;
+import com.my.entity.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetInstructorCoursesDemo {
+public class DeleteCourseDemo {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration().configure()
                 .addAnnotatedClass(InstructorDetail.class)
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Review.class)
                 .buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
@@ -23,11 +25,9 @@ public class GetInstructorCoursesDemo {
 
             session.beginTransaction();
 
-            Instructor instructor = session.get(Instructor.class, 1L);
+            Course course = session.get(Course.class, 4L);
 
-            System.out.println("instructor = " + instructor);
-
-            System.out.println("Courses: " + instructor.getCourses());
+            session.delete(course);
 
             session.getTransaction().commit();
         }

@@ -1,4 +1,4 @@
-package com.my.crud;
+package com.my.crud_bi;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;

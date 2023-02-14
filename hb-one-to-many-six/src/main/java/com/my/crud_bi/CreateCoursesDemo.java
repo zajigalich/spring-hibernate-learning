@@ -1,4 +1,4 @@
-package com.my.crud;
+package com.my.crud_bi;
 
 import com.my.entity.Course;
 import com.my.entity.Instructor;
@@ -6,8 +6,6 @@ import com.my.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 
 public class CreateCoursesDemo {
     public static void main(String[] args) {

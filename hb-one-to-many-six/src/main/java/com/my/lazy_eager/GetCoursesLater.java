@@ -35,6 +35,7 @@ public class GetCoursesLater {
             session.close();
 
             System.out.println("\nConnection recreated\n");
+
             //next part can occur later
 
             session = sessionFactory.getCurrentSession();
