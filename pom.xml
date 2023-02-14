@@ -14,7 +14,7 @@
         <module>spring-mvc-three</module>
         <module>hibernate-tutorial-four</module>
         <module>hb-one-to-one-five</module>
-        <module>hb-one-to-many-six</module>
+        <module>hb-one-to-many-to-many-six</module>
     </modules>
 
     <properties>

@@ -1,9 +1,6 @@
 package com.my.crud_uni;
 
-import com.my.entity.Course;
-import com.my.entity.Instructor;
-import com.my.entity.InstructorDetail;
-import com.my.entity.Review;
+import com.my.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -12,9 +9,10 @@ public class CreateCourseWithReviewDemo {
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration()
                 .configure()
-                .addAnnotatedClass(InstructorDetail.class)
-                .addAnnotatedClass(Instructor.class)
+                .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Instructor.class)
+                .addAnnotatedClass(InstructorDetail.class)
                 .addAnnotatedClass(Review.class)
                 .buildSessionFactory();
 
@@ -25,7 +23,7 @@ public class CreateCourseWithReviewDemo {
         try(session; sessionFactory) {
             session.beginTransaction();
 
-            Course course = new Course("Spring");
+            Course course = new Course("Hibernate");
 
             course.add(new Review("Wow, amazing"));
             course.add(new Review("Bad course"));

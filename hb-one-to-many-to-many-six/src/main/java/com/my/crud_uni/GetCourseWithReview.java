@@ -1,9 +1,6 @@
 package com.my.crud_uni;
 
-import com.my.entity.Course;
-import com.my.entity.Instructor;
-import com.my.entity.InstructorDetail;
-import com.my.entity.Review;
+import com.my.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,6 +15,7 @@ public class GetCourseWithReview {
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(Course.class)
                 .addAnnotatedClass(Review.class)
+                .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();

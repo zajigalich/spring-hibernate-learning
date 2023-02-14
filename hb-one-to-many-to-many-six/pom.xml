@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hb-one-to-many-six</artifactId>
+    <artifactId>hb-one-to-many-to-many-six</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
