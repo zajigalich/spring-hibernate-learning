@@ -48,9 +48,11 @@
 
     <tx:annotation-driven transaction-manager="myTransactionManager"/>
 
-    <!--<bean id="messageSource"
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
+
+    <!-- <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basenames" value="messages"/>
     </bean>-->
-
 </beans>
