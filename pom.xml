@@ -15,6 +15,7 @@
         <module>hibernate-tutorial-four</module>
         <module>hb-one-to-one-five</module>
         <module>hb-one-to-many-to-many-six</module>
+        <module>web-customer-tracker</module>
     </modules>
 
     <properties>
