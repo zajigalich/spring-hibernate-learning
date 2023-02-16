@@ -20,7 +20,8 @@
     <h3>Save Customer</h3>
 
     <form:form action="saveCustomer" modelAttribute="customer" method="post">
-        <%--action="/customer/saveCustomer"--%>
+
+        <form:hidden path="id"/>
         <table>
             <tbody>
             <tr>

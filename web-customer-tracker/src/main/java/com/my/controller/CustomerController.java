@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +41,13 @@ public class CustomerController {
     public String saveCustomer(@ModelAttribute(name = "customer") Customer customer) {
         customerService.saveCustomer(customer);
         return "redirect:/customer/list";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("customerId") Long customerId, Model model) {
+        Customer customer = customerService.getCustomer(customerId);
+        model.addAttribute("customer", customer);
+        return "customer-form";
     }
 
     @InitBinder

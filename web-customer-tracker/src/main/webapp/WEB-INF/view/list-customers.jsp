@@ -5,7 +5,7 @@
     <title>Customer List</title>
     <link type="text/css"
           rel="stylesheet"
-          href = "${pageContext.request.contextPath}/static/css/style.css">
+          href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 <body>
 
@@ -19,23 +19,30 @@
 <div id="container">
     <div id="content">
 
-       <input type="button"
-              value="Add Customer"
-              onclick="window.location.href='showFormForAdd'; return false;"
-              class="add-button"
-       />
+        <input type="button"
+               value="Add Customer"
+               onclick="window.location.href='showFormForAdd'; return false;"
+               class="add-button"
+        />
 
         <table>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Action</th>
             </tr>
             <c:forEach var="tempCustomer" items="${customers}">
+
+                <c:url var="updateLink" value="/customer/showFormForUpdate">
+                    <c:param name="customerId" value="${tempCustomer.id}"/>
+                </c:url>
+
                 <tr>
                     <td>${tempCustomer.firstName}</td>
                     <td>${tempCustomer.lastName}</td>
                     <td>${tempCustomer.email}</td>
+                    <td><a href="${updateLink}">Update</a></td>
                 </tr>
             </c:forEach>
         </table>
