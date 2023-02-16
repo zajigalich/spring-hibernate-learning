@@ -9,5 +9,5 @@ public interface CustomerDAO {
     List<Customer> getCustomers();
     void saveCustomer(Customer customer);
     Customer getCustomer(Long id);
-
+    void deleteCustomer(Long customerId);
 }

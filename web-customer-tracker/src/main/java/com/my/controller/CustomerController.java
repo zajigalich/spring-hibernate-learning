@@ -50,6 +50,12 @@ public class CustomerController {
         return "customer-form";
     }
 
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("customerId") Long customerId){
+        customerService.deleteCustomer(customerId);
+        return "redirect:/customer/list";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
