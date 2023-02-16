@@ -1,4 +1,4 @@
-package com.my.dao.iml;
+package com.my.dao.impl;
 
 import com.my.dao.CustomerDAO;
 import com.my.entity.Customer;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class CustomerDAOIml implements CustomerDAO {
+public class CustomerDAOImpl implements CustomerDAO {
 
     private SessionFactory sessionFactory;
 
@@ -22,12 +22,17 @@ public class CustomerDAOIml implements CustomerDAO {
     }
 
     @Override
-    @Transactional
     public List<Customer> getCustomers() {
         Session session = sessionFactory.getCurrentSession();
 
-        Query<Customer> query = session.createQuery("from Customer", Customer.class);
+        Query<Customer> query = session.createQuery("from Customer order by lastName", Customer.class);
 
         return query.getResultList();
+    }
+
+    @Override
+    public void saveCustomer(Customer customer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(customer);
     }
 }

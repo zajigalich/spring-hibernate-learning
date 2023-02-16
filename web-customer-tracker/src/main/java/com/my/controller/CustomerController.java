@@ -1,11 +1,14 @@
 package com.my.controller;
 
-import com.my.dao.CustomerDAO;
 import com.my.entity.Customer;
+import com.my.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,19 +16,38 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private CustomerDAO customerDAO;
+    private CustomerService customerService;
 
-    @RequestMapping("/list")
+    @Autowired
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    @GetMapping("/list") //sendRedirect is get method
     public String customerList(Model model) {
-        List<Customer> customers = customerDAO.getCustomers();
+        List<Customer> customers = customerService.getCustomers();
 
         model.addAttribute("customers", customers);
 
         return "list-customers";
     }
 
-    @Autowired
-    public void setCustomerDAO(CustomerDAO customerDAO) {
-        this.customerDAO = customerDAO;
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "customer-form";
+    }
+
+    @PostMapping("/saveCustomer")
+    public String saveCustomer(@ModelAttribute(name = "customer") Customer customer) {
+        customerService.saveCustomer(customer);
+        return "redirect:/customer/list";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 }
