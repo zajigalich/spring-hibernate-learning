@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.my.util.SortUtil" %>
 <html>
 <head>
     <title>Customer List</title>
@@ -9,7 +10,6 @@
           href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 <body>
-
 
 <div id="wrapper">
     <div id="header">
@@ -27,16 +27,26 @@
         />
 
         <form:form action="search" method="get">
-                Search Customer: <input name="searchName" type="text"/>
+            Search Customer: <input name="searchName" type="text"/>
 
             <input type="submit" value="Search" class="add-button"/>
         </form:form>
 
+        <c:url var="sortLinkFirstName" value="/customer/list">
+            <c:param name="sort" value="${SortUtil.FIRST_NAME}"/>
+        </c:url>
+        <c:url var="sortLinkLastName" value="/customer/list">
+            <c:param name="sort" value="${SortUtil.LAST_NAME}"/>
+        </c:url>
+        <c:url var="sortEmail" value="/customer/list">
+            <c:param name="sort" value="${SortUtil.EMAIL}"/>
+        </c:url>
+
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th><a href="${sortLinkFirstName}">First Name</a> </th>
+                <th><a href="${sortLinkLastName}">Last Name</a></th>
+                <th><a href="${sortEmail}">Email</a></th>
                 <th>Action</th>
             </tr>
             <c:forEach var="tempCustomer" items="${customers}">

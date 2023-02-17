@@ -2,6 +2,7 @@ package com.my.controller;
 
 import com.my.entity.Customer;
 import com.my.service.CustomerService;
+import com.my.util.SortUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,13 @@ public class CustomerController {
     }
 
     @GetMapping("/list") //sendRedirect is get method
-    public String customerList(Model model) {
-        List<Customer> customers = customerService.getCustomers();
+    public String customerList(
+            Model model,
+            @RequestParam(value = "sort",
+                    required = false,
+                    defaultValue = "LAST_NAME") String sort) {
+
+        List<Customer> customers = customerService.getCustomers(SortUtil.valueOf(sort));
 
         model.addAttribute("customers", customers);
 
@@ -51,24 +57,22 @@ public class CustomerController {
     }
 
     @GetMapping("/delete")
-    public String deleteCustomer(@RequestParam("customerId") Long customerId){
+    public String deleteCustomer(@RequestParam("customerId") Long customerId) {
         customerService.deleteCustomer(customerId);
         return "redirect:/customer/list";
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam("searchName") String searchName, Model model){
+    public String search(@RequestParam("searchName") String searchName, Model model) {
         List<Customer> customers = customerService.searchCustomers(searchName);
         model.addAttribute("customers", customers);
         return "list-customers";
     }
 
-
-
-    /*@InitBinder
+    @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-    }*/
+    }
 }

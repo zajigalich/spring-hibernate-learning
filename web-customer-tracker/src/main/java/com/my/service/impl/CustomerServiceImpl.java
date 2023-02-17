@@ -3,6 +3,7 @@ package com.my.service.impl;
 import com.my.dao.CustomerDAO;
 import com.my.entity.Customer;
 import com.my.service.CustomerService;
+import com.my.util.SortUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public List<Customer> getCustomers() {
-        return customerDAO.getCustomers();
+    public List<Customer> getCustomers(SortUtil sortUtil) {
+        return customerDAO.getCustomers(sortUtil);
     }
 
     @Override

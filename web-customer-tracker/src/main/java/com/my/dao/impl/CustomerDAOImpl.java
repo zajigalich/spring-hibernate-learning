@@ -2,6 +2,7 @@ package com.my.dao.impl;
 
 import com.my.dao.CustomerDAO;
 import com.my.entity.Customer;
+import com.my.util.SortUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Locale;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -22,10 +22,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public List<Customer> getCustomers() {
+    public List<Customer> getCustomers(SortUtil sortUtil) {
         Session session = sessionFactory.getCurrentSession();
 
-        Query<Customer> query = session.createQuery("from Customer order by lastName", Customer.class);
+        Query<Customer> query =
+                session.createQuery("from Customer order by " + sortUtil.getSortingField(), Customer.class);
 
         return query.getResultList();
     }
