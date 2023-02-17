@@ -9,4 +9,5 @@ public interface CustomerService {
     void saveCustomer(Customer customer);
     Customer getCustomer(Long id);
     void deleteCustomer(Long customerId);
+    List<Customer> searchCustomers(String searchName);
 }
