@@ -1,39 +1,37 @@
 package aopdemo.aspect;
 
+import aopdemo.entity.Account;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class LoggingAspect {
 
-    //@Before("execution(void addAccount())")
-    //    @Before("execution(void aopdemo.dao.AccountDAO.addAccount())")
+    //@Before("execution(void aopdemo.dao.AccountDAO.addAccount())")
 
-    //@Pointcut("execution(aopdemo.entity.* aopdemo.dao.*.*(aopdemo.entity.*, boolean, ..))")
+    @Before("aopdemo.aspect.AopExpressions.forDaoNoGetterSetter()") //wildcard
+    public void beforeForDaoNoSetterGetterAdvice(JoinPoint joinPoint) {
+        System.out.println(getClass().getSimpleName() + ": PERFORMING LOGGING (@Before advice)");
 
-    @Pointcut("execution(* aopdemo.dao.*.*(..))")
-    private void forDAOPackage(){}
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("methodSignature = " + methodSignature);
 
-    @Pointcut("execution(* get*())")
-    private void getter(){}
+        Object[] args = joinPoint.getArgs();
 
-    @Pointcut("execution(void set*(*))")
-    private void setter(){}
+        for (Object tempArg: args){
 
-    @Pointcut("forDAOPackage() && !(setter() || getter())")
-    private void forDaoNoGetterSetter(){}
+            if (tempArg instanceof Account){
+                ((Account) tempArg).setLevel("FINE");
+            }
 
-    @Before("forDaoNoGetterSetter()") //wildcard
-    public void beforeForDaoNoSetterGetterAdvice() {
-        System.out.println(getClass().getSimpleName() + ": @Before advice on method");
+            System.out.println(tempArg);
+        }
     }
-
-    /*@Before("forDAOPackage()") //wildcard
-    public void beforeAddAccountApiAnalyticsAdvice() {
-        System.out.println(getClass().getSimpleName() + ": @Before advice on method");
-    }*/
 
 }
