@@ -10,7 +10,7 @@ public class AopExpressions {
     public void forDAOPackage() {
     }
 
-    @Pointcut("execution(* get*())")
+    @Pointcut("execution(* get*(..))")
     public void getter() {
     }
 

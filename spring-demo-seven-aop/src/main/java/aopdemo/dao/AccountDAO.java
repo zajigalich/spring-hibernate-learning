@@ -26,7 +26,8 @@ public class AccountDAO {
         this.accounts = accounts;
     }
 
-    public List<Account> getAccounts() {
+    public List<Account> getAccounts(boolean tripWire) {
+        if (tripWire) throw new RuntimeException("No soup for you");
         return accounts;
     }
 
