@@ -3,14 +3,31 @@ package aopdemo.dao;
 import aopdemo.entity.Account;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccountDAO {
 
     private String name;
 
-    public Account addAccount(Account account, boolean bool) {
+    private List<Account> accounts;
+
+    public AccountDAO() {
+        accounts = new ArrayList<>();
+    }
+
+    public void addAccount(Account account) {
+        accounts.add(account);
         System.out.println(getClass().getSimpleName() + ": ADDING ACCOUNT");
-        return account;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 
     public String getName() {
@@ -22,4 +39,6 @@ public class AccountDAO {
         System.out.println(getClass().getSimpleName() + ": SET NAME METHOD");
         this.name = name;
     }
+
+
 }
