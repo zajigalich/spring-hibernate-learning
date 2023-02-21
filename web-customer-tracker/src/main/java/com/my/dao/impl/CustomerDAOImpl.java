@@ -69,7 +69,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             query.setParameter("searchName", "%" + searchName + "%");
 
         } else {
-            query = session.createQuery("select Customer from Customer", Customer.class);
+            query = session.createQuery("from Customer", Customer.class);
         }
 
         customers = query.getResultList();

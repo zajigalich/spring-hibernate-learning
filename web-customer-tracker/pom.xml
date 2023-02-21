@@ -30,9 +30,16 @@
         <hibernate.jpa.version>1.0.2.Final</hibernate.jpa.version>
         <junit.version>5.9.2</junit.version>
         <c3p0.version>0.9.5.5</c3p0.version>
+        <aspectj.weawer.version>1.9.7</aspectj.weawer.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.weawer.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -88,6 +95,13 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
