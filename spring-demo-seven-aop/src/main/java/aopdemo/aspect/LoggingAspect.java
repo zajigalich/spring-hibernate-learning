@@ -2,16 +2,13 @@ package aopdemo.aspect;
 
 import aopdemo.entity.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Locale;
 
 @Aspect
 @Component
@@ -53,11 +50,53 @@ public class LoggingAspect {
 
     @AfterThrowing(pointcut = "execution(* aopdemo.dao.AccountDAO.getAccounts(..))",
             throwing = "exception")
-    public void afterTrowingOnGetAccountsAdvice(JoinPoint joinPoint, Throwable exception) {
+    public void afterTrowingGetAccountsAdvice(JoinPoint joinPoint, Throwable exception) {
         System.out.println(getClass().getSimpleName() + ": PERFORMING LOGGING (@AfterThrowing advice)");
         System.out.println(joinPoint.getSignature());
         System.out.println(exception);
     }
+
+    @After("execution(* aopdemo.dao.AccountDAO.getAccounts(..))")
+    public void afterGetAccountsAdvice(JoinPoint joinPoint) {
+        System.out.println(getClass().getSimpleName() + ": PERFORMING LOGGING (@After advice)");
+        System.out.println(joinPoint.getSignature());
+    }
+
+    @Around("execution(String aopdemo.service.*.getFortune(..))")
+    public Object aroundGetFortuneAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        System.out.println(getClass().getSimpleName() + ": PERFORMING LOGGING (@Around advice)");
+        System.out.println(joinPoint.getSignature());
+
+        long start = System.currentTimeMillis();
+
+        Object result = null;
+        try {
+
+            result = joinPoint.proceed();
+
+        } catch (RuntimeException exception) {
+
+            System.out.println(exception + ": @Around advice - we have a problem");
+            //result = "Handled an exception";
+
+            throw exception;
+        }
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("Time spent -> " + (end - start) + "ms");
+
+        return result;
+    }
+
+
+    /*@AfterReturning(value = "execution(String aopdemo.service.TrafficFortuneService.getFortune())", returning = "res")
+    public void afterReturningGetFortuneAdvice(JoinPoint joinPoint, StringBuilder res) {
+        System.out.println(getClass().getSimpleName() + ": PERFORMING LOGGING (@AfterReturning advice)");
+        System.out.println(joinPoint.getSignature());
+        res.reverse();
+    }*/
 
     private void convertAccountsNameToUpperCase(List<Account> result) {
         for (Account account : result) {

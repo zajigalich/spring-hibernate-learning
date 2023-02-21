@@ -1,4 +1,4 @@
-package aopdemo;
+package aopdemo.app;
 
 import aopdemo.config.JavaAOPConfig;
 import aopdemo.dao.AccountDAO;
@@ -35,9 +35,7 @@ public class MainDemoApp {
 
         } catch (Exception e){
             System.out.println("Main app: caught exception -> " + e);
-            e.printStackTrace();
         }
-        System.out.println("accounts1 = " + accounts1);
 
         context.close();
     }
