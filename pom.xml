@@ -17,6 +17,7 @@
         <module>hb-one-to-many-to-many-six</module>
         <module>web-customer-tracker</module>
         <module>spring-demo-seven-aop</module>
+        <module>spring-security</module>
     </modules>
 
     <properties>
