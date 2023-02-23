@@ -40,7 +40,7 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(garry, semen, dic);
     }
 
-    /*@Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(new Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>() {
@@ -53,11 +53,11 @@ public class SecurityConfig {
                     @Override
                     public void customize(FormLoginConfigurer<HttpSecurity> httpSecurityFormLoginConfigurer) {
                         httpSecurityFormLoginConfigurer
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
+                                .loginPage("/showLoginPage")
+                                .loginProcessingUrl("/authenticateUser")
                                 .permitAll();
                     }
                 })
                 .build();
-    }*/
+    }
 }
