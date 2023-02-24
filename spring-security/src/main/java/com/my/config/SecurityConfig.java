@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -46,7 +47,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(new Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>() {
             @Override
             public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry authorizationManagerRequestMatcherRegistry) {
-                authorizationManagerRequestMatcherRegistry.anyRequest().authenticated();
+                authorizationManagerRequestMatcherRegistry
+                        .anyRequest()
+                        .authenticated();
             }
         })
                 .formLogin(new Customizer<FormLoginConfigurer<HttpSecurity>>() {
@@ -58,6 +61,14 @@ public class SecurityConfig {
                                 .permitAll();
                     }
                 })
+                .logout(new Customizer<LogoutConfigurer<HttpSecurity>>() {
+                    @Override
+                    public void customize(LogoutConfigurer<HttpSecurity> httpSecurityLogoutConfigurer) {
+                        httpSecurityLogoutConfigurer
+                                .permitAll();
+                    }
+                })
                 .build();
     }
+
 }
