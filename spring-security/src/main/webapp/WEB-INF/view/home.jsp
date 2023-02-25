@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Home Page</title>
@@ -21,6 +21,21 @@
     <br><br>
     Role(s): <security:authentication property="principal.authorities"/>
 </p>
+
+<security:authorize access="hasRole('MANAGER')">
+    <p>
+        <a href="${pageContext.request.contextPath}/leaders">Leadership meeting</a>
+        (Available only for managers)
+        <br>
+    </p>
+</security:authorize>
+
+<security:authorize access="hasRole('ADMIN')">
+    <p>
+        <a href="${pageContext.request.contextPath}/systems">IT systems meeting</a>
+        (Available only for admins)
+    </p>
+</security:authorize>
 <hr>
 
 <form:form action="${pageContext.request.contextPath}/logout"
