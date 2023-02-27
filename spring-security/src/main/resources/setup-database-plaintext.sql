@@ -6,14 +6,19 @@ drop table if exists users;
 
 create table if not exists users(
                                     username varchar(50) primary key,
-                                    password varchar(50) not null,
+                                    password varchar(68) not null,
                                     enabled tinyint(1) not null
 );
 
-insert into users values
+/*insert into users values
                       ('garry', '{noop}test123', 1),
                       ('semen', '{noop}test123', 1),
-                      ('dic', '{noop}test123', 1);
+                      ('dic', '{noop}test123', 1);*/
+
+insert into users values
+                      ('garry', '{bcrypt}$2y$10$gz1AGXTF.yCaNulRXPSrXezLr.noO1mTc3h.04B/jC/JZKfRTwyQ.', 1),
+                      ('semen', '{bcrypt}$2y$10$gz1AGXTF.yCaNulRXPSrXezLr.noO1mTc3h.04B/jC/JZKfRTwyQ.', 1),
+                      ('dic', '{bcrypt}$2y$10$gz1AGXTF.yCaNulRXPSrXezLr.noO1mTc3h.04B/jC/JZKfRTwyQ.', 1);
 
 drop table if exists authorities;
 
