@@ -60,12 +60,10 @@ public class RegistrationController {
 
         if (bindingResult.hasErrors()) {
 
-            model.addAttribute("crmUser", new CrmUser());
-
             // add roles to the model for form display
             model.addAttribute("roles", roles);
 
-            model.addAttribute("registrationError", "User name/password can not be empty.");
+            model.addAttribute("registrationError", "User cannot be created.");
 
             return "registration-form";
         }
@@ -74,7 +72,7 @@ public class RegistrationController {
 
         if (existing != null) {
 
-            model.addAttribute("crmUser", new CrmUser());
+            //model.addAttribute("crmUser", new CrmUser());
 
             model.addAttribute("roles", roles);
 
