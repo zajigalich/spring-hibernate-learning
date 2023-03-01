@@ -80,15 +80,6 @@ public class AppConfig {
         return Integer.parseInt(Objects.requireNonNull(propVal));
     }
 
-    private Properties getHibernateProperties(){
-        Properties properties = new Properties();
-
-        properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-
-        return properties;
-    }
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -98,6 +89,15 @@ public class AppConfig {
         sessionFactory.setHibernateProperties(getHibernateProperties());
 
         return sessionFactory;
+    }
+
+    private Properties getHibernateProperties(){
+        Properties properties = new Properties();
+
+        properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+
+        return properties;
     }
 
     @Bean

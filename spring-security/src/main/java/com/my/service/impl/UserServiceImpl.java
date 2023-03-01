@@ -50,7 +50,11 @@ public class UserServiceImpl implements UserService {
         user.setLastName(crmUser.getLastName());
         user.setEmail(crmUser.getEmail());
 
-        user.setRoles(List.of(roleDao.findRoleByName("ROLE_EMPLOYEE")));
+        if(!crmUser.getFormRole().equals("ROLE_EMPLOYEE")){
+            user.addRole(roleDao.findRoleByName("ROLE_EMPLOYEE"));
+        }
+
+        user.addRole(roleDao.findRoleByName(crmUser.getFormRole()));
 
         userDao.save(user);
     }

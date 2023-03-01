@@ -2,6 +2,7 @@ package com.my.controller;
 
 import com.my.entity.User;
 import com.my.model.CrmUser;
+import com.my.service.RoleService;
 import com.my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -12,7 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @Controller
@@ -20,18 +23,28 @@ import java.util.logging.Logger;
 public class RegistrationController {
 
     private final UserService userService;
+    private final RoleService roleService;
+
+    private Map<String,String> roles;
 
     private final Logger logger = Logger.getLogger(getClass().getName());
 
-    @Lazy
     @Autowired
-    public RegistrationController(UserService userService) {
+    public RegistrationController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
+
+    @PostConstruct
+    protected void loadRoles(){
+        roles = roleService.getStringRoles();
+    }
+
 
     @GetMapping("/showRegistrationForm")
     public String showRegistrationForm(Model model) {
         model.addAttribute("crmUser", new CrmUser());
+        model.addAttribute("roles", roles);
         return "registration-form";
     }
 
@@ -46,6 +59,14 @@ public class RegistrationController {
         logger.info("Processing registration for: " + userName);
 
         if (bindingResult.hasErrors()) {
+
+            model.addAttribute("crmUser", new CrmUser());
+
+            // add roles to the model for form display
+            model.addAttribute("roles", roles);
+
+            model.addAttribute("registrationError", "User name/password can not be empty.");
+
             return "registration-form";
         }
 
@@ -54,6 +75,9 @@ public class RegistrationController {
         if (existing != null) {
 
             model.addAttribute("crmUser", new CrmUser());
+
+            model.addAttribute("roles", roles);
+
             model.addAttribute("registrationError", "User name already exists.");
 
             logger.warning("User already exists.");

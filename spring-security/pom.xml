@@ -20,6 +20,7 @@
 
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <jstl.version>1.2</jstl.version>
+        <javax.annotation.api>1.3.2</javax.annotation.api>
 
         <sringframework.version>5.3.25</sringframework.version>
         <spring.security.version>5.8.2</spring.security.version>
@@ -29,6 +30,8 @@
 
         <mysql.connector.version>8.0.29</mysql.connector.version>
         <c3p0.version>0.9.5.5</c3p0.version>
+
+        <commons.lang3.version>3.12.0</commons.lang3.version>
 
         <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
     </properties>
@@ -43,11 +46,18 @@
         </dependency>
 
         <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>${javax.annotation.api}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -55,13 +65,13 @@
             <version>${sringframework.version}</version>
         </dependency>
 
+
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${sringframework.version}</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -75,34 +85,34 @@
             <version>${spring.security.version}</version>
         </dependency>
 
+        <!-- Hibernate Validator -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
 
-        <!-- Hibernate Validator -->
+        <!-- Spring Transactions -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
         </dependency>
 
-        <!-- Spring Transactions -->
+        <!-- Spring ORM -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${sringframework.version}</version>
         </dependency>
 
-        <!-- Spring ORM -->
+        <!-- Hibernate Core -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${sringframework.version}</version>
         </dependency>
 
-        <!-- Hibernate Core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -115,11 +125,19 @@
             <version>${mysql.connector.version}</version>
         </dependency>
 
+
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>${c3p0.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+
 
         <!--<dependency>
             <groupId>junit</groupId>

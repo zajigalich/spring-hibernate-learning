@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Register New User</title>
@@ -102,6 +102,9 @@
                         <form:input path="email" placeholder="email (*)" class="form-control"/>
                     </div>
 
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <form:select path="formRole" items="${roles}" class="form-control"/>
+                    </div>
 
                     <!-- Register Button -->
                     <div style="margin-top: 10px" class="form-group">

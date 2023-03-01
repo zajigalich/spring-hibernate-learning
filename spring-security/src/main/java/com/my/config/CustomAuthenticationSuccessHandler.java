@@ -18,16 +18,15 @@ import java.io.IOException;
 public class CustomAuthenticationSuccessHandler
         implements AuthenticationSuccessHandler {
 
-    private UserService userService;
+    private final UserService userService;
 
-    @Lazy
     @Autowired
     public CustomAuthenticationSuccessHandler(UserService userService) {
         this.userService = userService;
     }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
 
         System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n");
 
