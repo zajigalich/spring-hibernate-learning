@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name = "user")
+@Table(schema = "spring_security_custom_user",name = "user")
 public class User {
 
     @Id

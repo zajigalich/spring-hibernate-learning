@@ -3,6 +3,7 @@ package com.my.config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -51,7 +52,7 @@ public class AppConfig implements WebMvcConfigurer {
         return viewResolver;
     }
 
-    @Bean
+    @Bean("myDataSource")
     public DataSource dataSource() {
 
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -77,7 +78,7 @@ public class AppConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    @Bean
+    @Bean("securityDataSource")
     public DataSource securityDataSource() {
 
         ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
@@ -108,8 +109,19 @@ public class AppConfig implements WebMvcConfigurer {
         return Integer.parseInt(Objects.requireNonNull(propVal));
     }
 
-    @Bean
+    @Bean("mySessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+        sessionFactory.setHibernateProperties(getHibernateProperties());
+
+        return sessionFactory;
+    }
+
+    @Bean("securitySessionFactory")
+    public LocalSessionFactoryBean securitySessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         sessionFactory.setDataSource(securityDataSource());
@@ -128,9 +140,17 @@ public class AppConfig implements WebMvcConfigurer {
         return properties;
     }
 
-    @Bean
+    @Bean("myTransactionManager")
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+    public HibernateTransactionManager transactionManager(@Qualifier("mySessionFactory") SessionFactory sessionFactory) {
+        HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setSessionFactory(sessionFactory);
+        return txManager;
+    }
+
+    @Bean("securityTransactionManager")
+    @Autowired
+    public HibernateTransactionManager securityTransactionManager(@Qualifier("securitySessionFactory") SessionFactory sessionFactory) {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(sessionFactory);
         return txManager;

@@ -23,7 +23,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
+    @Transactional("securityTransactionManager")
     public Map<String, String> getStringRoles() {
         List<Role> roles = roleDao.getRoles().stream().toList();
 

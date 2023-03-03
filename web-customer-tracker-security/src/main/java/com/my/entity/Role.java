@@ -3,7 +3,7 @@ package com.my.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(schema = "spring_security_custom_user",name = "role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

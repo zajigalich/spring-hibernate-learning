@@ -34,13 +34,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional
+    @Transactional("securityTransactionManager")
     public User findByUserName(String userName) {
         return userDao.findByUserName(userName);
     }
 
     @Override
-    @Transactional
+    @Transactional("securityTransactionManager")
     public void save(CrmUser crmUser) {
         User user = new User();
         user.setUserName(crmUser.getUserName());
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional("securityTransactionManager")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findByUserName(username);
 
