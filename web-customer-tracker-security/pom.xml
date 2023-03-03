@@ -176,7 +176,7 @@
     </dependencies>
 
     <build>
-        <finalName>spring-security</finalName>
+        <finalName>web-customer-tracker-security</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
