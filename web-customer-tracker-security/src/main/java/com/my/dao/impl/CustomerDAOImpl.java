@@ -18,7 +18,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(@Qualifier("mySessionFactory")SessionFactory sessionFactory) {
+    public void setSessionFactory(@Qualifier("sessionFactory")SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

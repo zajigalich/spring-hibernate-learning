@@ -21,31 +21,31 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    @Transactional("myTransactionManager")
+    @Transactional("transactionManager")
     public List<Customer> getCustomers(SortUtil sortUtil) {
         return customerDAO.getCustomers(sortUtil);
     }
 
     @Override
-    @Transactional("myTransactionManager")
+    @Transactional("transactionManager")
     public void saveCustomer(Customer customer) {
         customerDAO.saveCustomer(customer);
     }
 
     @Override
-    @Transactional("myTransactionManager")
+    @Transactional("transactionManager")
     public Customer getCustomer(Long id) {
         return customerDAO.getCustomer(id);
     }
 
     @Override
-    @Transactional("myTransactionManager")
+    @Transactional("transactionManager")
     public void deleteCustomer(Long customerId) {
         customerDAO.deleteCustomer(customerId);
     }
 
     @Override
-    @Transactional("myTransactionManager")
+    @Transactional("transactionManager")
     public List<Customer> searchCustomers(String searchName) {
         return customerDAO.searchCustomers(searchName);
     }
