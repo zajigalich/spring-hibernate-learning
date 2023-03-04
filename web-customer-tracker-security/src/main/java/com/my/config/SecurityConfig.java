@@ -57,7 +57,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers("/customer/**").hasRole("EMPLOYEE")
+                        .requestMatchers("/customer/list").hasRole("EMPLOYEE")
                         .requestMatchers("/customer/showForm*").hasAnyRole("MANAGER", "ADMIN")
                         .requestMatchers("/customer/save*").hasAnyRole("MANAGER", "ADMIN")
                         .requestMatchers("/customer/delete").hasRole("ADMIN")

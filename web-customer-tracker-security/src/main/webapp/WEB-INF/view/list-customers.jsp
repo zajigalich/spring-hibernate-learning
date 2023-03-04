@@ -44,34 +44,42 @@
 
         <table>
             <tr>
-                <th><a href="${sortLinkFirstName}">First Name</a> </th>
+                <th><a href="${sortLinkFirstName}">First Name</a></th>
                 <th><a href="${sortLinkLastName}">Last Name</a></th>
                 <th><a href="${sortEmail}">Email</a></th>
                 <th>Action</th>
             </tr>
-            <c:forEach var="tempCustomer" items="${customers}">
+            <c:if test="${customers != null}">
+                <c:forEach var="tempCustomer" items="${customers}">
 
-                <c:url var="updateLink" value="/customer/showFormForUpdate">
-                    <c:param name="customerId" value="${tempCustomer.id}"/>
-                </c:url>
+                    <c:url var="updateLink" value="/customer/showFormForUpdate">
+                        <c:param name="customerId" value="${tempCustomer.id}"/>
+                    </c:url>
 
-                <c:url var="deleteLink" value="/customer/delete">
-                    <c:param name="customerId" value="${tempCustomer.id}"/>
-                </c:url>
+                    <c:url var="deleteLink" value="/customer/delete">
+                        <c:param name="customerId" value="${tempCustomer.id}"/>
+                    </c:url>
 
-                <tr>
-                    <td>${tempCustomer.firstName}</td>
-                    <td>${tempCustomer.lastName}</td>
-                    <td>${tempCustomer.email}</td>
-                    <td><a href="${updateLink}">Update</a>
-                        |
-                        <a href="${deleteLink}"
-                           onclick="if (!(confirm('Are you sure you want to delete?'))) return false;">Delete</a></td>
-                </tr>
-            </c:forEach>
+                    <tr>
+                        <td>${tempCustomer.firstName}</td>
+                        <td>${tempCustomer.lastName}</td>
+                        <td>${tempCustomer.email}</td>
+                        <td><a href="${updateLink}">Update</a>
+                            |
+                            <a href="${deleteLink}"
+                               onclick="if (!(confirm('Are you sure you want to delete?'))) return false;">Delete</a></td>
+                    </tr>
+                </c:forEach>
+            </c:if>
         </table>
     </div>
 </div>
+<form:form action="${pageContext.request.contextPath}/logout"
+           method="post">
+
+    <input type="submit" value="Logout">
+
+</form:form>
 
 </body>
 </html>
