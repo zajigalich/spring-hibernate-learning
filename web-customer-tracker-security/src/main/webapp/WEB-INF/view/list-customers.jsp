@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.my.util.SortUtil" %>
 <html>
 <head>
@@ -47,7 +48,9 @@
                 <th><a href="${sortLinkFirstName}">First Name</a></th>
                 <th><a href="${sortLinkLastName}">Last Name</a></th>
                 <th><a href="${sortEmail}">Email</a></th>
-                <th>Action</th>
+                <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+                    <th>Action</th>
+                </security:authorize>
             </tr>
             <c:if test="${customers != null}">
                 <c:forEach var="tempCustomer" items="${customers}">
@@ -64,10 +67,21 @@
                         <td>${tempCustomer.firstName}</td>
                         <td>${tempCustomer.lastName}</td>
                         <td>${tempCustomer.email}</td>
-                        <td><a href="${updateLink}">Update</a>
-                            |
-                            <a href="${deleteLink}"
-                               onclick="if (!(confirm('Are you sure you want to delete?'))) return false;">Delete</a></td>
+                        <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+
+                            <td>
+                                <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+                                    <a href="${updateLink}">Update</a>
+                                </security:authorize>
+
+                                <security:authorize access="hasRole('ADMIN')">
+                                    |
+                                    <a href="${deleteLink}"
+                                       onclick="if (!(confirm('Are you sure you want to delete?'))) return false;">Delete</a>
+                                </security:authorize>
+                            </td>
+
+                        </security:authorize>
                     </tr>
                 </c:forEach>
             </c:if>
