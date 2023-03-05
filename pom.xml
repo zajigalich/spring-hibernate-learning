@@ -19,6 +19,7 @@
         <module>spring-demo-seven-aop</module>
         <module>spring-security</module>
         <module>web-customer-tracker-security</module>
+        <module>jackson-databind-json-seven</module>
     </modules>
 
     <properties>

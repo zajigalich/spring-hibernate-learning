@@ -1,0 +1,20 @@
+{
+  "id": 14,
+  "firstName": "Garry",
+  "lastName": "Potter",
+  "active": true,
+  "address": {
+    "street": "100 Main St",
+    "city": "Houston",
+    "state": "Texas",
+    "zip": "19103",
+    "country": "USA"
+  },
+  "languages": [
+    "C#",
+    "Java",
+    "PHP",
+    "JavaScript"
+  ],
+  "company": "Google"
+}
