@@ -20,6 +20,7 @@
         <module>spring-security</module>
         <module>web-customer-tracker-security</module>
         <module>jackson-databind-json-seven</module>
+        <module>spring-rest-eight</module>
     </modules>
 
     <properties>
