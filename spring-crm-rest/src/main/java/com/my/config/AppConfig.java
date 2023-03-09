@@ -76,7 +76,7 @@ public class AppConfig
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory =
                 new LocalSessionFactoryBean();
 
@@ -87,7 +87,7 @@ public class AppConfig
         return sessionFactory;
     }
 
-    private Properties getHibernateProperties(){
+    private Properties getHibernateProperties() {
         Properties properties = new Properties();
 
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
@@ -98,7 +98,7 @@ public class AppConfig
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager =
                 new HibernateTransactionManager();
 
@@ -107,9 +107,4 @@ public class AppConfig
         return transactionManager;
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").
-                addResourceLocations("/static/");
-    }
 }

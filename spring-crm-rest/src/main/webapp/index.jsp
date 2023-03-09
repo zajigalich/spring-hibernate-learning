@@ -1,5 +1,13 @@
 <html>
+<head>
+    <title>Spring CRM REST</title>
+</head>
+
 <body>
-<h2>Hello World!</h2>
+
+<h3>Spring CRM REST</h3>
+
+<hr>
+
 </body>
 </html>
