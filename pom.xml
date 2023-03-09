@@ -21,6 +21,7 @@
         <module>web-customer-tracker-security</module>
         <module>jackson-databind-json-seven</module>
         <module>spring-rest-eight</module>
+        <module>spring-crm-rest</module>
     </modules>
 
     <properties>
