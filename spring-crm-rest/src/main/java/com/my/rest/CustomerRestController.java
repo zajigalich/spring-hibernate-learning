@@ -35,9 +35,26 @@ public class CustomerRestController {
     }
 
     @PostMapping
-    public Customer saveCustomer(@RequestBody Customer customer){
+    public Customer saveCustomer(@RequestBody Customer customer) {
         customer.setId(null); //dao code will perform INSERT, otherwise if there is id - it will perform update
         customerService.saveCustomer(customer);
         return customer;
+    }
+
+    @PutMapping
+    public Customer updateCustomer(@RequestBody Customer customer) {
+        customerService.saveCustomer(customer);
+        return customer;
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCustomer(@PathVariable Long id) {
+
+        if (customerService.getCustomer(id) == null) {
+            throw new CustomerNotFoundException("Customer id not found - " + id);
+        }
+
+        customerService.deleteCustomer(id);
+        return "Deleted customer - " + id;
     }
 }

@@ -13,6 +13,7 @@ public class CustomerRestExceptionHandler {
     public ResponseEntity<CustomerErrorResponse> handleException(Exception e) {
         CustomerErrorResponse error = new CustomerErrorResponse();
 
+        e.printStackTrace();
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(e.getMessage());
         error.setTimestamp(System.currentTimeMillis());
