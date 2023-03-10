@@ -4,10 +4,7 @@ import com.my.entity.Customer;
 import com.my.exception.CustomerNotFoundException;
 import com.my.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,4 +34,10 @@ public class CustomerRestController {
         return customer;
     }
 
+    @PostMapping
+    public Customer saveCustomer(@RequestBody Customer customer){
+        customer.setId(null); //dao code will perform INSERT, otherwise if there is id - it will perform update
+        customerService.saveCustomer(customer);
+        return customer;
+    }
 }

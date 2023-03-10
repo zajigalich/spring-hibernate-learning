@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class CustomerRestExceptionHandler {
     @ExceptionHandler
-    public ResponseEntity<CustomerErrorResponse> handleException(Exception e){
+    public ResponseEntity<CustomerErrorResponse> handleException(Exception e) {
         CustomerErrorResponse error = new CustomerErrorResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -21,12 +21,12 @@ public class CustomerRestExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotFoundException e){
-        CustomerErrorResponse error = new CustomerErrorResponse();
-
-        error.setStatus(HttpStatus.NOT_FOUND.value());
-        error.setMessage(e.getMessage());
-        error.setTimestamp(System.currentTimeMillis());
+    public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotFoundException e) {
+        CustomerErrorResponse error = new CustomerErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                e.getMessage(),
+                System.currentTimeMillis()
+        );
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
