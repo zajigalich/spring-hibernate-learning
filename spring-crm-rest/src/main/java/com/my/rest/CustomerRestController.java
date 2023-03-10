@@ -1,6 +1,7 @@
 package com.my.rest;
 
 import com.my.entity.Customer;
+import com.my.exception.CustomerNotFoundException;
 import com.my.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,18 @@ public class CustomerRestController {
     }
 
     @GetMapping
-    public List<Customer> getCustomers(){
+    public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomer(@PathVariable("id") Long customerId){
+    public Customer getCustomer(@PathVariable("id") Long customerId) {
 
-        return customerService.getCustomer(customerId);
+        Customer customer = customerService.getCustomer(customerId);
+        if (customer == null) {
+            throw new CustomerNotFoundException("Customer not found with id = " + customerId);
+        }
+        return customer;
     }
 
 }
