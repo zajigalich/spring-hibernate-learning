@@ -36,7 +36,7 @@ public class CustomerRestController {
 
     @PostMapping
     public Customer saveCustomer(@RequestBody Customer customer) {
-        customer.setId(null); //dao code will perform INSERT, otherwise if there is id - it will perform update
+        customer.setId(null); //dao code will perform INSERT, otherwise if there is an id - it will perform update
         customerService.saveCustomer(customer);
         return customer;
     }

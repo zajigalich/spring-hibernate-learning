@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
         // make REST call
         if (customer.getId() == null) {
             // add employee
-            restTemplate.postForEntity(crmRestUrl, customer, String.class);
+            restTemplate.postForEntity(crmRestUrl, customer, Customer.class);
         } else {
             // update employee
             restTemplate.put(crmRestUrl, customer);
@@ -69,12 +69,8 @@ public class CustomerServiceImpl implements CustomerService {
         logger.info("in getCustomers(): Calling REST API " + crmRestUrl + "/" + id);
 
         // make REST call
-        ResponseEntity<Customer> customerResponseEntity =
-                restTemplate.exchange(crmRestUrl + "/" + id, HttpMethod.GET,
-                        null, new ParameterizedTypeReference<Customer>() {
-                        });
-
-        Customer customer = customerResponseEntity.getBody();
+        Customer customer =
+                restTemplate.getForObject(crmRestUrl + "/" + id, Customer.class);
 
         logger.info("in getCustomer(): theCustomer=" + customer);
 
